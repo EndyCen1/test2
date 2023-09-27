@@ -1,20 +1,18 @@
-judul_halaman: Halaman Login
-bahasa: en
-meta:
-  charset: UTF-8
-  viewport: width=device-width, initial-scale=1.0
-form:
-  action: proses_login.php
-  method: post
-elemen_form:
-  - label: Username
-    id: username
-    name: username
-    required: true
-  - label: Password
-    id: password
-    name: password
-    required: true
-tombol_login:
-  teks: Login
-  tipe: submit
+---
+name: Super-Linter
+
+on: push
+
+jobs:
+  super-lint:
+    name: Lint code base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
